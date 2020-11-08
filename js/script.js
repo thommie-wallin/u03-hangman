@@ -1,7 +1,7 @@
 // Globala variabler
 
 // Array: med spelets alla ord
-const wordList = [dinosaurs, lavish, duck, political, squash, page, place, silky, quick, bustling, veil, steel];
+const wordList = ['dinosaurs', 'lavish', 'duck', 'political', 'squash', 'page', 'place', 'silky', 'quick', 'bustling', 'veil', 'steel'];
 
 // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 let selectedWord;    
@@ -15,7 +15,17 @@ let letterButtonEls; // Array av DOM-noder: Knapparna för bokstäverna
 let letterBoxEls;    // Array av DOM-noder: Rutorna där bokstäverna ska stå
 
 // Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
+
+// ----------------------------------------------------------------------
 // Funktion som slumpar fram ett ord
+
+function randomWord(arr) {
+  const randomNumber = Math.floor(Math.random() * arr.length);
+  return arr[randomNumber];
+}
+// console.log("Function returns " + randomWord(wordList));
+// ----------------------------------------------------------------------
+
 // Funktion som tar fram bokstävernas rutor, antal rutor beror på vilket ord slumptas fram
 // Funktion som körs när du trycker på bokstäverna och gissar bokstav
 // Funktion som ropas vid vinst eller förlust, gör olika saker beroende tillståndet
