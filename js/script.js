@@ -1,7 +1,10 @@
 // Globala variabler
 
-const wordList;      // Array: med spelets alla ord
-let selectedWord;    // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
+// Array: med spelets alla ord
+const wordList = [dinosaurs, lavish, duck, political, squash, page, place, silky, quick, bustling, veil, steel];
+
+// Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
+let selectedWord;    
 
 let guesses = 0;     // Number: håller antalet gissningar som gjorts
 let hangmanImg;      // Sträng: sökväg till bild som kommer visas (och ändras) fel svar. t.ex. `/images/h1.png`
