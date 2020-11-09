@@ -1,10 +1,12 @@
 // Globala variabler
 
 // Array: med spelets alla ord
-const wordList = ['dinosaurs', 'lavish', 'duck', 'political', 'squash', 'page', 'place', 'silky', 'quick', 'bustling', 'veil', 'steel'];
+const wordList = ['dinosaurs']; 
+// , 'lavish', 'duck', 'political', 'squash', 'page', 'place', 'silky', 'quick', 'bustling', 'veil', 'steel'
 
 // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 let selectedWord;    
+
 
 let guesses = 0;     // Number: håller antalet gissningar som gjorts
 let hangmanImg;      // Sträng: sökväg till bild som kommer visas (och ändras) fel svar. t.ex. `/images/h1.png`
@@ -14,14 +16,23 @@ let msgHolderEl;     // DOM-nod: Ger meddelande när spelet är över
 // DOM-nod: knappen som du startar spelet med
 let startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
-let letterButtonEls; // Array av DOM-noder: Knapparna för bokstäverna
-let letterBoxEls;    // Array av DOM-noder: Rutorna där bokstäverna ska stå
+
+
+// Array av DOM-noder: Knapparna för bokstäverna
+let letterButtonEls = document.querySelectorAll('#gameBoard .btn');
+
+
+
+
+// Array av DOM-noder: Rutorna där bokstäverna ska stå
+let letterBoxEls = document.querySelector('#letterBoxes > ul');
+
 
 // Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
-
 function startGame() {
   selectedWord = randomWord(wordList);
   createLetterBoxes(selectedWord);
+  
 }
 
 // ----------------------------------------------------------------------
@@ -37,8 +48,7 @@ function randomWord(arr) {
 // Funktion som tar fram bokstävernas rutor, antal rutor beror på vilket ord slumptas fram
 
 function createLetterBoxes(word) {
-  let letters = word.split('');
-  const letterBoxEls = document.querySelector('#letterBoxes > ul');  
+  let letters = word.split('');  
   const removeEl = document.querySelectorAll('#letterBoxes li');
   const newLi = document.createElement('li');
 
@@ -48,18 +58,42 @@ function createLetterBoxes(word) {
   }  
   
   // Set a new word
-  for (let i = 0; i < letters.length; i++) {
-        
+  for (let i = 0; i < letters.length; i++) {        
     const newInput = document.createElement('input');
     newInput.setAttribute('type', 'text');
     newInput.setAttribute('disabled', 'true');
-    newInput.setAttribute('value', '');
+    newInput.setAttribute('value', letters[i]);
     
     newLi.appendChild(newInput);
     letterBoxEls.appendChild(newLi);
   }
 }
 
+// -----------------------------------------------------------------------
 // Funktion som körs när du trycker på bokstäverna och gissar bokstav
+
+letterButtonEls.forEach(function(btn){
+  btn.addEventListener('click', function(e){    
+    const btnValue = e.target.value;
+    
+    console.log(btnValue)
+    const selectedUpper = selectedWord.toUpperCase();
+    const letters = selectedUpper.split('');
+    console.log(letters)    
+    const index = letters.indexOf(btnValue);
+    console.log(index)
+
+    if (index == -1) {
+      console.log('Wrong letter!')
+    } else {
+      // debugger
+      const letter = document.querySelector(`#letterBoxes li:nth-child(${index + 1})`);
+      console.log(letter)
+    }
+  })
+})
+
+
+
 // Funktion som ropas vid vinst eller förlust, gör olika saker beroende tillståndet
 // Funktion som inaktiverar/aktiverar bokstavsknapparna beroende på vilken del av spelet du är på
