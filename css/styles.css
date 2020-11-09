@@ -112,6 +112,7 @@ footer {
 
 #letterBoxes li {
   display: inline-flex;
+  gap: 0.25em;
 }
 
 #letterBoxes input {

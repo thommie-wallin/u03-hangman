@@ -53,7 +53,7 @@ function createLetterBoxes(word) {
     const newInput = document.createElement('input');
     newInput.setAttribute('type', 'text');
     newInput.setAttribute('disabled', 'true');
-    newInput.setAttribute('value', letters[i]);
+    newInput.setAttribute('value', '');
     
     newLi.appendChild(newInput);
     letterBoxEls.appendChild(newLi);
