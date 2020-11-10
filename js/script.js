@@ -74,9 +74,11 @@ function createLetterBoxes(word) {
 
 letterButtonEls.forEach(function(btn){
   btn.addEventListener('click', function(e){    
-    const btnValue = e.target.value;
+    const btnValue = e.target.value;    
+    console.log(btnValue)
+
     
-    // console.log(btnValue)
+
     const selectedUpper = selectedWord.toUpperCase();
     const letters = selectedUpper.split('');
     // console.log(letters)    
@@ -92,6 +94,7 @@ letterButtonEls.forEach(function(btn){
       const letter = document.querySelector(`#letterBoxes li:nth-child(${index + 1})`);
       // console.log(letter)
       letter.firstChild.setAttribute('value', btnValue)
+      buttonOff(e.target);
       
       if (index2 != -1) {
         const letter = document.querySelector(`#letterBoxes li:nth-child(${index2 + 1})`);
@@ -112,3 +115,7 @@ letterButtonEls.forEach(function(btn){
 
 // Funktion som ropas vid vinst eller förlust, gör olika saker beroende tillståndet
 // Funktion som inaktiverar/aktiverar bokstavsknapparna beroende på vilken del av spelet du är på
+
+function buttonOff(button) {
+  button.setAttribute('disabled', 'true');
+}
