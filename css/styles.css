@@ -112,7 +112,7 @@ footer {
 
 #letterBoxes li {
   display: inline-flex;
-  gap: 0.25em;
+  margin: 0.25em;
 }
 
 #letterBoxes input {
