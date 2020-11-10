@@ -75,7 +75,7 @@ function createLetterBoxes(word) {
 letterButtonEls.forEach(function(btn){
   btn.addEventListener('click', function(e){    
     const btnValue = e.target.value;    
-    console.log(btnValue)
+    // console.log(btnValue)
 
     
 
@@ -88,7 +88,16 @@ letterButtonEls.forEach(function(btn){
     // console.log(index2)
 
     if (index == -1) {
-      console.log('Wrong letter!')
+      // console.log('Wrong letter!')
+      if (guesses < 6) {
+        guesses++;
+        hangmanImg = `images/h${guesses}.png`
+        document.querySelector('#gameBoard img').setAttribute('src', hangmanImg);
+        console.log(hangmanImg)
+      } else {
+        console.log('You loose!');
+      }
+      
     } else {
       // debugger
       const letter = document.querySelector(`#letterBoxes li:nth-child(${index + 1})`);
