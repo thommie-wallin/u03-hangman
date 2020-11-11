@@ -110,6 +110,11 @@ footer {
   min-width: 84px;
 }
 
+#letterBoxes ul {
+  display: flex;
+  justify-content: center;
+}
+
 #letterBoxes li {
   display: inline-flex;
   margin: 0.25em;
@@ -220,4 +225,20 @@ footer {
     transparent 5px
   );
   border-top: 1px solid #000;
+}
+
+.display-none {
+  display: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#hangmanSection {
+  display: flex;
+  justify-content: center;
 }

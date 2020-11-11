@@ -32,7 +32,10 @@ let letterBoxEls = document.querySelector('#letterBoxes > ul');
 // Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
 function startGame() {
   selectedWord = randomWord(wordList);
+  console.log(selectedWord)
   createLetterBoxes(selectedWord);  
+  display();
+  
 }
 
 // ----------------------------------------------------------------------
@@ -76,12 +79,6 @@ letterButtonEls.forEach(function(btn){
   btn.addEventListener('click', function(e){    
     const btnValue = e.target.value;    
     // console.log(btnValue)
-
-    
-    
-
-    
-
     const selectedUpper = selectedWord.toUpperCase();
     const letters = selectedUpper.split('');
     // console.log(letters)    
@@ -156,3 +153,22 @@ function gameFinished(guesses) {
 function buttonOff(button) {
   button.setAttribute('disabled', 'true');
 }
+
+
+function display() {
+  document.querySelector('#gameBoard').classList.remove('display-none');
+  
+  if (selectedWord != undefined) {
+    // Startknappen försvinner
+    document.querySelector('#startGameBtn').classList.add   ('display-none');
+
+    // Instruktionerna och välkomsttext försvinner
+    document.querySelector('article').classList.add('display-none');
+
+  }
+}
+
+if (selectedWord == undefined) {
+  console.log('hej')
+  document.querySelector('#gameBoard').classList.add   ('display-none');
+}    

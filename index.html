@@ -20,8 +20,19 @@
                För varje bokstav du gissar rätt, så fylls dyker det upp en bokstav i på den plats som bokstaven du gissade på motsvarar i ordet.
             </p>
         </article>
+        
         <button class="btn btn--stripe" type="button" id="startGameBtn">Starta spelet</button>
         <section id="gameBoard">
+            <section id="hangmanSection">
+                <img id="hangman" src="images/h0.png" alt="hangman">
+            </section>
+            
+            <section id="letterBoxes">
+                <!-- This is where the matched letters should appear, these should match the number of letters in the selected word -->
+                <ul>
+            
+                </ul>
+            </section>
             <ul id="letterButtons">
                 <li><button class="btn btn--stripe" type="button" value="A">A</button></li>
                 <li><button class="btn btn--stripe" type="button" value="B">B</button></li>
@@ -42,7 +53,7 @@
                 <li><button class="btn btn--stripe" type="button" value="Q">Q</button></li>
                 <li><button class="btn btn--stripe" type="button" value="R">R</button></li>
                 <li><button class="btn btn--stripe" type="button" value="S">S</button></li>
-                <li><button class="btn btn--stripe" type="button" value="T" disabled>T</button></li>
+                <li><button class="btn btn--stripe" type="button" value="T">T</button></li>
                 <li><button class="btn btn--stripe" type="button" value="U">U</button></li>
                 <li><button class="btn btn--stripe" type="button" value="V">V</button></li>
                 <li><button class="btn btn--stripe" type="button" value="W">W</button></li>
@@ -53,18 +64,8 @@
                 <li><button class="btn btn--stripe" type="button" value="Ä">Ä</button></li>
                 <li><button class="btn btn--stripe" type="button" value="Ö">Ö</button></li>
             </ul>
-            <section id="letterBoxes">
-                <!-- This is where the matched letters should appear, these should match the number of letters in the selected word -->
-                <ul>
-                    <li><input type="text" disabled value="C" /></li>
-                    <li><input type="text" disabled value="H" /></li>
-                    <li><input type="text" disabled value="A" /></li>
-                    <li><input type="text" disabled value="S" /></li>
-                    <li><input type="text" disabled value="&nbsp;"  /></li>
-                    <li><input type="text" disabled value="&nbsp;"  /></li>
-                </ul>
-            </section>
-            <img id="hangman" src="images/h0.png" alt="hangman">
+            
+            
         </section>
         <section id="message">
             <!-- This is where messages should appear -->
