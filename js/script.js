@@ -1,7 +1,7 @@
 // Globala variabler
 
 // Array: med spelets alla ord
-const wordList = ['dinosaurss', 'duck']; 
+const wordList = ['dinosaurs', 'duck']; 
 // , 'lavish', 'duck', 'political', 'squash', 'page', 'place', 'silky', 'quick', 'bustling', 'veil', 'steel'
 
 // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
@@ -18,12 +18,11 @@ let msgHolderEl;     // DOM-nod: Ger meddelande när spelet är över
 let startGameBtnEl = document.querySelector('#startGameBtn');
 startGameBtnEl.addEventListener('click', startGame);
 
+let restartGameBtnEl = document.querySelector('#restartGameBtn');
+restartGameBtnEl.addEventListener('click', restartGame);
 
 // Array av DOM-noder: Knapparna för bokstäverna
 let letterButtonEls = document.querySelectorAll('#gameBoard .btn');
-
-
-
 
 // Array av DOM-noder: Rutorna där bokstäverna ska stå
 let letterBoxEls = document.querySelector('#letterBoxes > ul');
@@ -32,7 +31,7 @@ let letterBoxEls = document.querySelector('#letterBoxes > ul');
 // Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
 function startGame() {
   selectedWord = randomWord(wordList);
-  console.log(selectedWord)
+  // console.log(selectedWord)
   createLetterBoxes(selectedWord);  
   display();
   
@@ -93,7 +92,7 @@ letterButtonEls.forEach(function(btn){
         guesses++;
         hangmanImg = `images/h${guesses}.png`
         document.querySelector('#gameBoard img').setAttribute('src', hangmanImg);
-        console.log(hangmanImg)
+        // console.log(hangmanImg)
       } else {
         gameFinished(guesses)
       }
@@ -102,7 +101,7 @@ letterButtonEls.forEach(function(btn){
       
       if (correctGuesses == letters.length - 1) {
         gameFinished(guesses)
-        console.log('Win');
+        // console.log('Win');
       } else {
         
       }
@@ -110,9 +109,10 @@ letterButtonEls.forEach(function(btn){
       // console.log(letter)
       letter.firstChild.setAttribute('value', btnValue)
       buttonOff(e.target);
+      console.log(e.target)
       correctGuesses++;
-      console.log(correctGuesses);
-      console.log(letters.length);
+      // console.log(correctGuesses);
+      // console.log(letters.length);
 
       if (index2 != -1) {
         const letter = document.querySelector(`#letterBoxes li:nth-child(${index2 + 1})`);
@@ -141,9 +141,12 @@ function gameFinished(guesses) {
   msgHolderEl = document.querySelector('#message');
 
   if (guesses == 6) {
-    msgHolderEl.innerHTML = '<h1>Du har förlorat!</h1><button class="btn btn--stripe" type="button" value="Z">STARTA OM SPELET</button>';
+    document.querySelector('#msgLose').classList.remove('display-none');
+    document.querySelector('#restartGameBtn').classList.remove('display-none');
+    
   } else {
-    msgHolderEl.innerHTML = '<h1>Du har vunnit!</h1><button class="btn btn--stripe" type="button" value="Z">STARTA OM SPELET</button>';
+    document.querySelector('#msgWin').classList.remove('display-none');
+    document.querySelector('#restartGameBtn').classList.remove('display-none');
   }
 }
 
@@ -154,21 +157,48 @@ function buttonOff(button) {
   button.setAttribute('disabled', 'true');
 }
 
+function allButtonsOn(buttons) {
+  buttons.forEach(element => element.removeAttribute('disabled'));  
+}
 
+
+// Funktion för hur design på sidan ska visas.
 function display() {
+  // Bokstavtangenterna och hangman-bilden visas.
   document.querySelector('#gameBoard').classList.remove('display-none');
+
+  document.querySelector('#hangman').classList.remove('display-none');
   
   if (selectedWord != undefined) {
     // Startknappen försvinner
     document.querySelector('#startGameBtn').classList.add   ('display-none');
 
-    // Instruktionerna och välkomsttext försvinner
+    // Instruktionerna och välkomsttext försvinner.
     document.querySelector('article').classList.add('display-none');
 
   }
 }
 
-if (selectedWord == undefined) {
-  console.log('hej')
-  document.querySelector('#gameBoard').classList.add   ('display-none');
+// När sidan laddas in visas inte bokstavstangenterna och hangman-bilden.
+if (selectedWord == undefined) {  
+  document.querySelector('#gameBoard').classList.add('display-none');
+  document.querySelector('#msgLose').classList.add('display-none');
+  document.querySelector('#msgWin').classList.add('display-none');
+  document.querySelector('#restartGameBtn').classList.add('display-none');
 }    
+
+
+// Restart-knappen:
+
+function restartGame() {
+  selectedWord = '';
+  guesses = 0;     
+  correctGuesses = 0;  
+  document.querySelector('#msgLose').classList.add('display-none');
+  document.querySelector('#msgWin').classList.add('display-none');  
+  document.querySelector('#restartGameBtn').classList.add('display-none');  
+  document.querySelector('#gameBoard img').setAttribute('src', `images/h0.png`);
+  allButtonsOn(letterButtonEls);
+  console.log('hej')
+  startGame();
+}
