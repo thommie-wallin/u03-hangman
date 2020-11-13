@@ -166,6 +166,8 @@ function allButtonsOn(buttons) {
 function display() {
   // Bokstavtangenterna och hangman-bilden visas.
   document.querySelector('#gameBoard').classList.remove('display-none');
+  
+  document.querySelector('#gameBoard').classList.add('display-flex');
 
   document.querySelector('#hangman').classList.remove('display-none');
   
@@ -198,7 +200,6 @@ function restartGame() {
   document.querySelector('#msgWin').classList.add('display-none');  
   document.querySelector('#restartGameBtn').classList.add('display-none');  
   document.querySelector('#gameBoard img').setAttribute('src', `images/h0.png`);
-  allButtonsOn(letterButtonEls);
-  console.log('hej')
+  allButtonsOn(letterButtonEls);  
   startGame();
 }

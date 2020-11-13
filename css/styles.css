@@ -109,6 +109,7 @@ footer {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  max-width: 1000px;
 }
 
 #letterButtons button:not(last-child) {
@@ -121,6 +122,8 @@ footer {
 #letterBoxes ul {
   display: flex;
   justify-content: center;
+  width: 100%;
+  height: auto;
 }
 
 #letterBoxes li {
@@ -237,6 +240,13 @@ footer {
 
 .display-none {
   display: none;
+}
+
+.display-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #hangmanSection {
