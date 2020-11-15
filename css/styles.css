@@ -235,10 +235,12 @@ footer {
   border-top: 1px solid #000;
 }
 
+/* Klass som jag lägger på element som jag vill inte ska synas */
 .display-none {
   display: none;
 }
 
+/* Centrerar element */
 .display-flex {
   display: flex;
   flex-direction: column;
@@ -246,11 +248,13 @@ footer {
   align-items: center;
 }
 
+/* Centrerar element */
 #hangmanSection {
   display: flex;
   justify-content: center;
 }
 
+/* Gör hangmanbilden responsiv plus en ram */
 #hangman {
   border: 3px solid #666;
   width: 100%;

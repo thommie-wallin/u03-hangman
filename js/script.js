@@ -42,7 +42,7 @@ let letterBoxEls = document.querySelector('#letterBoxes > ul');
 function startGame() {
   selectedWord = randomWord(wordList);  
   createLetterBoxes(selectedWord);  
-  display();  
+  display();
 }
 
 // ----------------------------------------------------------------------
@@ -223,6 +223,6 @@ function restartGame() {
   document.querySelector('#msgWin').classList.add('display-none');  
   document.querySelector('#restartGameBtn').classList.add('display-none');  
   document.querySelector('#gameBoard img').setAttribute('src', `images/h0.png`);
-  allButtonsOn(letterButtonEls);  
+  allButtonsOn(letterButtonEls);
   startGame();
 }
