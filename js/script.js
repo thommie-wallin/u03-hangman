@@ -19,7 +19,7 @@ let correctGuesses = 0;
 let hangmanImg;      
 
 // DOM-nod: Ger meddelande när spelet är över
-let msgHolderEl;     
+let msgHolderEl = document.querySelector('#message');
 
 // DOM-nod: knappen som du startar spelet med
 let startGameBtnEl = document.querySelector('#startGameBtn');
@@ -103,6 +103,7 @@ letterButtonEls.forEach(function(btn){
       } else {
         gameFinished(guesses);
         allButtonsOff(letterButtonEls);
+        msgHolderEl.scrollIntoView();
       }
       
     } else {
@@ -110,6 +111,7 @@ letterButtonEls.forEach(function(btn){
       if (correctGuesses == letters.length - 1) {
         gameFinished(guesses)
         allButtonsOff(letterButtonEls);
+        msgHolderEl.scrollIntoView();
       } 
 
       const letter = document.querySelector(`#letterBoxes li:nth-child(${index + 1})`);
@@ -137,8 +139,7 @@ letterButtonEls.forEach(function(btn){
 // ----------------------------------------------------------------------
 // Funktion som ropas vid vinst eller förlust, gör olika saker beroende tillståndet
 
-function gameFinished(guesses) {
-  msgHolderEl = document.querySelector('#message');
+function gameFinished(guesses) { 
 
   if (guesses == 6) {       
     document.querySelector('#msgLose').classList.remove('display-none');
