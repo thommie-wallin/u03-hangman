@@ -121,8 +121,6 @@ footer {
 #letterBoxes ul {
   display: flex;
   justify-content: center;
-  width: 100%;
-  height: auto;
 }
 
 #letterBoxes li {
@@ -255,4 +253,31 @@ footer {
 
 #hangman {
   border: 3px solid #666;
+  width: 100%;
+  height: auto;
+}
+
+#msgLose,
+#msgWin {
+  text-align: center;
+}
+
+/* Media Queries */
+
+@media (max-width: 520px) {
+  #letterBoxes input {
+    width: 100%;
+  }
+
+  #letterBoxes li {
+    margin: 0;
+  }
+
+  header h1 {
+    font-size: 2em;
+  }
+
+  main {
+    padding: 0.5em;
+  }
 }

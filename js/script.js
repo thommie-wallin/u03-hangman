@@ -2,9 +2,9 @@
 // Globala variabler
 
 // Array: med spelets alla ord
-const wordList = ['duck']; 
+const wordList = ['dinosaurs']; 
 
-// , 'dinosaurs', 'lavish', 'duck', 'political', 'squash', 'page', 'place', 'silky', 'quick', 'bustling', 'veil', 'steel'
+// 'duck', 'lavish', 'duck', 'political', 'squash', 'page', 'place', 'silky', 'quick', 'bustling', 'veil', 'steel'
 
 // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 let selectedWord;    
@@ -56,7 +56,6 @@ function randomWord(arr) {
 }
 
 // ----------------------------------------------------------------------
-
 // Funktion som tar fram bokstävernas rutor, antal rutor beror på vilket ord slumptas fram
 
 function createLetterBoxes(word) {
