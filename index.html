@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
@@ -20,8 +21,27 @@
                För varje bokstav du gissar rätt, så fylls dyker det upp en bokstav i på den plats som bokstaven du gissade på motsvarar i ordet.
             </p>
         </article>
-        <button class="btn btn--stripe" type="button" id="startGameBtn">Starta spelet</button>
+        
+        <!-- Startknapp -->
+        <button class="btn btn--stripe" type="button" id="startGameBtn">
+            Starta spelet
+        </button>
+
+        <!-- Hangman-spelet -->
         <section id="gameBoard">
+            <!-- Hangmanbild -->
+            <section id="hangmanSection">
+                <img id="hangman" src="images/h0.png" alt="hangman">
+            </section>
+            
+            <!-- Slumpord -->
+            <section id="letterBoxes">                
+                <ul>
+            
+                </ul>
+            </section>
+
+            <!-- Bokstavsknappar -->
             <ul id="letterButtons">
                 <li><button class="btn btn--stripe" type="button" value="A">A</button></li>
                 <li><button class="btn btn--stripe" type="button" value="B">B</button></li>
@@ -42,7 +62,7 @@
                 <li><button class="btn btn--stripe" type="button" value="Q">Q</button></li>
                 <li><button class="btn btn--stripe" type="button" value="R">R</button></li>
                 <li><button class="btn btn--stripe" type="button" value="S">S</button></li>
-                <li><button class="btn btn--stripe" type="button" value="T" disabled>T</button></li>
+                <li><button class="btn btn--stripe" type="button" value="T">T</button></li>
                 <li><button class="btn btn--stripe" type="button" value="U">U</button></li>
                 <li><button class="btn btn--stripe" type="button" value="V">V</button></li>
                 <li><button class="btn btn--stripe" type="button" value="W">W</button></li>
@@ -53,21 +73,21 @@
                 <li><button class="btn btn--stripe" type="button" value="Ä">Ä</button></li>
                 <li><button class="btn btn--stripe" type="button" value="Ö">Ö</button></li>
             </ul>
-            <section id="letterBoxes">
-                <!-- This is where the matched letters should appear, these should match the number of letters in the selected word -->
-                <ul>
-                    <li><input type="text" disabled value="C" /></li>
-                    <li><input type="text" disabled value="H" /></li>
-                    <li><input type="text" disabled value="A" /></li>
-                    <li><input type="text" disabled value="S" /></li>
-                    <li><input type="text" disabled value="&nbsp;"  /></li>
-                    <li><input type="text" disabled value="&nbsp;"  /></li>
-                </ul>
-            </section>
-            <img id="hangman" src="images/h0.png" alt="hangman">
         </section>
-        <section id="message">
-            <!-- This is where messages should appear -->
+        
+        <!-- Vinna/förlora-meddelande -->
+        <section id="message">            
+            <div id="msgLose">
+                <h1>Du har förlorat!</h1>                
+            </div>
+            <div id="msgWin">
+                <h1>Du har vunnit!</h1>
+            </div>
+
+            <!-- Resetknapp -->
+            <div id="restartGameBtn">
+                <button class="btn btn--stripe restartGameBtn" type="button">STARTA OM SPELET</button>
+            </div>
         </section>
     </main>
     <footer>

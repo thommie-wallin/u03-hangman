@@ -40,10 +40,14 @@ header h1 {
 main {
   flex: 1;
   padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 main:after {
-  content: "\00a0"; /* &nbsp; */
+  content: "\00a0";
   display: block;
   margin-top: var(--space);
   height: 0px;
@@ -89,18 +93,22 @@ footer {
 
 #startGameBtn {
   font-size: 1.5em;
+  flex-shrink: initial;
 }
 
 #gameBoard {
   padding: 10px 0;
+  width: 100%;
+  height: auto;
 }
 
 #letterButtons {
-  display: inline-flex;
+  display: flex;
   list-style-type: none;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  max-width: 1000px;
 }
 
 #letterButtons button:not(last-child) {
@@ -110,8 +118,14 @@ footer {
   min-width: 84px;
 }
 
+#letterBoxes ul {
+  display: flex;
+  justify-content: center;
+}
+
 #letterBoxes li {
   display: inline-flex;
+  margin: 0.25em;
 }
 
 #letterBoxes input {
@@ -120,7 +134,7 @@ footer {
   font-size: 1.5em;
   font-weight: bold;
   line-height: 2em;
-  margin-top: 1em;
+  margin: 1em 0;
   padding: 20px 5px;
   text-align: center;
   width: 2em;
@@ -219,4 +233,55 @@ footer {
     transparent 5px
   );
   border-top: 1px solid #000;
+}
+
+/* Klass som jag lägger på element som jag vill inte ska synas */
+.display-none {
+  display: none;
+}
+
+/* Centrerar element */
+.display-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Centrerar element */
+#hangmanSection {
+  display: flex;
+  justify-content: center;
+}
+
+/* Gör hangmanbilden responsiv plus en ram */
+#hangman {
+  border: 3px solid #666;
+  width: 100%;
+  height: auto;
+}
+
+#msgLose,
+#msgWin {
+  text-align: center;
+}
+
+/* Media Queries */
+
+@media (max-width: 520px) {
+  #letterBoxes input {
+    width: 100%;
+  }
+
+  #letterBoxes li {
+    margin: 0;
+  }
+
+  header h1 {
+    font-size: 2em;
+  }
+
+  main {
+    padding: 0.5em;
+  }
 }
