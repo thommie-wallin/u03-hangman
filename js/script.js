@@ -2,9 +2,7 @@
 // Globala variabler
 
 // Array: med spelets alla ord
-const wordList = ['dinosaurs']; 
-
-// 'duck', 'lavish', 'duck', 'political', 'squash', 'page', 'place', 'silky', 'quick', 'bustling', 'veil', 'steel'
+const wordList = ['dinosaurs', 'duck', 'lavish', 'political', 'squash', 'page', 'place', 'silky', 'quick', 'bustling', 'veil', 'steel']; 
 
 // Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
 let selectedWord;    
@@ -15,7 +13,7 @@ let guesses = 0;
 // Number: räknar antalet korrekta gissningar
 let correctGuesses = 0;
 
-// Sträng: sökväg till bild som kommer visas (och ändras) fel svar. t.ex. `/images/h1.png`
+// Sträng: sökväg till bild som kommer visas (och ändras) fel svar. 
 let hangmanImg;      
 
 // DOM-nod: Ger meddelande när spelet är över
@@ -62,12 +60,12 @@ function createLetterBoxes(word) {
   let letters = word.split('');  
   const removeEl = document.querySelectorAll('#letterBoxes li');  
 
-  // Remove old word
+  // Tar bort gamla ordet
   for (let i = 0; i < removeEl.length; i++) {
     letterBoxEls.removeChild(removeEl[i]);    
   }  
   
-  // Set a new word
+  // Sätter dit det nya ordet
   for (let i = 0; i < letters.length; i++) {        
     const newLi = document.createElement('li');
     const newInput = document.createElement('input');
@@ -84,30 +82,40 @@ function createLetterBoxes(word) {
 // Funktion som körs när du trycker på bokstäverna och gissar bokstav
 
 letterButtonEls.forEach(function(btn){
-  btn.addEventListener('click', function(e){    
+  btn.addEventListener('click', function(e){   
+    
+    // Knappvärde
     const btnValue = e.target.value;    
     
+    // Gör om selectedWord till versaler och en array
     const selectedUpper = selectedWord.toUpperCase();
     const letters = selectedUpper.split('');
      
+    // Sök efter knappvärdet i letters-arrayen. Kan hitta upp till tre likadan
+    // bokstäver i letters.
     const index = letters.indexOf(btnValue);
     const index2 = letters.indexOf(btnValue, (index + 1));    
     const index3 = letters.indexOf(btnValue, (index2 + 1));    
     
-
-    if (index == -1) {      
-      if (guesses < 6) {
-        guesses++;
+    // Om knappvärdet inte finns i letters-arrayen läggs en del av hangman-gubben 
+    // till på skärmen. Vid 6 felgissningar förlorar användaren.
+    if (index == -1) {  
+      guesses++;
+      
+      if (guesses < 7) {
         hangmanImg = `images/h${guesses}.png`
-        document.querySelector('#gameBoard img').setAttribute('src', hangmanImg);        
-      } else {
-        gameFinished(guesses);
-        allButtonsOff(letterButtonEls);
-        msgHolderEl.scrollIntoView();
-      }
-      
+        document.querySelector('#gameBoard img').setAttribute('src', hangmanImg);  
+
+        if (guesses == 6) {
+          gameFinished(guesses);
+          allButtonsOff(letterButtonEls);
+          msgHolderEl.scrollIntoView();
+        }  
+      } 
     } else {
-      
+      // Om knappvärdet finns läggs det till bokstavsrutorna. Upp till och med
+      // tre bokstäver kan läggas till samtidigt. Ifall antalet rätta gissningar är
+      // lika många som antalet bokstäver i letters-arrayen vinner användaren.
       if (correctGuesses == letters.length - 1) {
         gameFinished(guesses)
         allButtonsOff(letterButtonEls);
@@ -138,7 +146,7 @@ letterButtonEls.forEach(function(btn){
 
 // ----------------------------------------------------------------------
 // Funktion som ropas vid vinst eller förlust, gör olika saker beroende tillståndet
-
+// Antalet gissningar avgör vilket meddelande som visas.
 function gameFinished(guesses) { 
 
   if (guesses == 6) {       
@@ -155,14 +163,17 @@ function gameFinished(guesses) {
 // ---------------------------------------------------------------------
 // Funktion som inaktiverar/aktiverar bokstavsknapparna beroende på vilken del av spelet du är på
 
+// En knapp avstängd
 function buttonOff(button) {
   button.setAttribute('disabled', 'true');
 }
 
+// Alla knappar avstängda
 function allButtonsOff(buttons) {
   buttons.forEach(element => element.setAttribute('disabled', true));  
 }
 
+// Alla knappar påslagna
 function allButtonsOn(buttons) {
   buttons.forEach(element => element.removeAttribute('disabled'));  
 }
@@ -170,8 +181,9 @@ function allButtonsOn(buttons) {
 
 // --------------------------------------------------------------------
 // Funktion för hur design på sidan ska visas.
+
 function display() {
-  // Bokstavtangenterna och hangman-bilden visas.
+  // Bokstavtangenterna och hangman-bilden visas och centreras.
   document.querySelector('#gameBoard').classList.remove('display-none');
   
   document.querySelector('#gameBoard').classList.add('display-flex');
@@ -190,7 +202,9 @@ function display() {
 
 
 // -------------------------------------------------------------------
-// När sidan laddas in visas inte bokstavstangenterna och hangman-bilden.
+// När sidan laddas in visas inte bokstavstangenterna och hangman-bilden. Och 
+// inte heller win/lose-elementen.
+
 if (selectedWord == undefined) {  
   document.querySelector('#gameBoard').classList.add('display-none');
   document.querySelector('#msgLose').classList.add('display-none');

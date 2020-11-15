@@ -22,18 +22,26 @@
             </p>
         </article>
         
-        <button class="btn btn--stripe" type="button" id="startGameBtn">Starta spelet</button>
+        <!-- Startknapp -->
+        <button class="btn btn--stripe" type="button" id="startGameBtn">
+            Starta spelet
+        </button>
+
+        <!-- Hangman-spelet -->
         <section id="gameBoard">
+            <!-- Hangmanbild -->
             <section id="hangmanSection">
                 <img id="hangman" src="images/h0.png" alt="hangman">
             </section>
             
-            <section id="letterBoxes">
-                <!-- This is where the matched letters should appear, these should match the number of letters in the selected word -->
+            <!-- Slumpord -->
+            <section id="letterBoxes">                
                 <ul>
             
                 </ul>
             </section>
+
+            <!-- Bokstavsknappar -->
             <ul id="letterButtons">
                 <li><button class="btn btn--stripe" type="button" value="A">A</button></li>
                 <li><button class="btn btn--stripe" type="button" value="B">B</button></li>
@@ -67,14 +75,16 @@
             </ul>
         </section>
         
-        <section id="message">
-            <!-- This is where messages should appear -->
+        <!-- Vinna/förlora-meddelande -->
+        <section id="message">            
             <div id="msgLose">
                 <h1>Du har förlorat!</h1>                
             </div>
             <div id="msgWin">
                 <h1>Du har vunnit!</h1>
             </div>
+
+            <!-- Resetknapp -->
             <div id="restartGameBtn">
                 <button class="btn btn--stripe restartGameBtn" type="button">STARTA OM SPELET</button>
             </div>
